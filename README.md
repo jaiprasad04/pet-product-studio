@@ -1,12 +1,15 @@
-# 🐶 Pet Product Studio — High-Conversion AI Pet Advertisement Generator
+# 🐶 Pet Product Studio — Open-Source AI Pet Brand Ad Generator (Free Pebblely Alternative for Pet Brands)
 
-> **A beautifully designed, premium AI product studio for pet brands.** Built with Next.js (App Router), this application provides a self-contained SaaS boilerplate for generating photorealistic marketing ads, placing products alongside pets, and creating high-octane creative campaigns using the MuAPI AI engine.
+> **Generate photorealistic ads placing your pet products alongside dogs, cats, and other pets in seconds.** A production-ready, self-hostable Next.js SaaS boilerplate purpose-built for pet brands, dropshippers, and DTC pet e-commerce. A free open-source alternative to Pebblely, Booth.ai, and Flair.ai — powered by the MuAPI AI engine.
+
+**Tech stack:** Next.js 14 (App Router) · Prisma · PostgreSQL · NextAuth (Google OAuth) · Stripe · Tailwind CSS · MuAPI
+**Use cases:** Pet food packaging ads · Dog toy lifestyle shots · Cat treat product scenes · Pet supplement campaigns · Shopify pet store imagery · Amazon pet listings · Chewy seller ads · Instagram pet brand content
 
 ## 🌐 Project Repository
 
 **GitHub Repository:** [github.com/SamurAIGPT/pet-product-studio](https://github.com/SamurAIGPT/pet-product-studio)
 
-Experience the modern design. Sign in with Google to upload product reference images, define customized descriptive prompts, inspect billing options, and view generation history.
+Sign in with Google to upload product reference images (up to 14 angles), define descriptive prompts, inspect billing options, and view generation history.
 
 ---
 
