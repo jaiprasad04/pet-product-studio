@@ -28,8 +28,27 @@ export async function GET(req) {
       orderBy: { createdAt: "desc" }
     });
 
+    // Automatically check and update status of any creations that are still processing
+    const updatedCreations = await Promise.all(
+      creations.map(async (c) => {
+        if (c.status === "processing" && c.requestId) {
+          try {
+            await AIService.checkStatus(c.requestId, session.user.id);
+            const refetched = await prisma.petCreation.findUnique({
+              where: { id: c.id }
+            });
+            return refetched || c;
+          } catch (e) {
+            console.error(`Error updating status for creation ${c.id}:`, e);
+            return c;
+          }
+        }
+        return c;
+      })
+    );
+
     // Parse inputUrls back to arrays for the frontend convenience
-    const parsedCreations = creations.map(c => {
+    const parsedCreations = updatedCreations.map(c => {
       try {
         return {
           ...c,
@@ -92,5 +111,38 @@ export async function POST(req) {
   } catch (error) {
     console.error("[CREATIONS_POST_ERROR]", error);
     return new NextResponse(error.message || "Internal Error", { status: 500 });
+  }
+}
+
+export async function DELETE(req) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session?.user) {
+      return new NextResponse("Unauthorized", { status: 401 });
+    }
+
+    const { searchParams } = new URL(req.url);
+    const id = searchParams.get("id");
+
+    if (!id) {
+      return new NextResponse("Missing creation ID", { status: 400 });
+    }
+
+    const creation = await prisma.petCreation.findFirst({
+      where: { id, userId: session.user.id }
+    });
+
+    if (!creation) {
+      return new NextResponse("Not Found", { status: 404 });
+    }
+
+    await prisma.petCreation.delete({
+      where: { id }
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error("[CREATIONS_DELETE_ERROR]", error);
+    return new NextResponse("Internal Error", { status: 500 });
   }
 }
