@@ -13,6 +13,8 @@
 
 > 🎨 **[Explore 50+ more open-source AI apps →](https://github.com/Anil-matcha/awesome-generative-ai-apps)**
 
+https://github.com/user-attachments/assets/75cbc455-024c-493a-9f14-7df4747d4c79
+
 ## 🌐 Project Repository
 
 **GitHub Repository:** [github.com/SamurAIGPT/pet-product-studio](https://github.com/SamurAIGPT/pet-product-studio)
